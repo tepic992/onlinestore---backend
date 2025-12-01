@@ -37,22 +37,23 @@ namespace OnlineStore.Infrastructure.Data
                 .WithMany()
                 .HasForeignKey(oi => oi.ProductId);
 
-            // Mapiranje tabela na lowercase
-            modelBuilder.Entity<User>().ToTable("users");
-            modelBuilder.Entity<Category>().ToTable("categories");
-            modelBuilder.Entity<Product>().ToTable("products");
-            modelBuilder.Entity<Order>().ToTable("orders");
-            modelBuilder.Entity<OrderItem>().ToTable("orderitems");
-            modelBuilder.Entity<CartItem>().ToTable("cartitems");
-            modelBuilder.Entity<Address>().ToTable("addresses");
-            modelBuilder.Entity<Review>().ToTable("reviews");
-            modelBuilder.Entity<Payment>().ToTable("payments");
-            modelBuilder.Entity<AuditLog>().ToTable("auditlogs");
-            modelBuilder.Entity<Discount>().ToTable("discounts");
-            modelBuilder.Entity<ProductImage>().ToTable("productimages");
-            modelBuilder.Entity<Brand>().ToTable("brands");
+            // Mapiranje tabela na PostgreSQL imena sa velikim početnim slovom
+            modelBuilder.Entity<User>().ToTable("\"Users\"");
+            modelBuilder.Entity<Category>().ToTable("\"Categories\"");
+            modelBuilder.Entity<Product>().ToTable("\"Products\"");
+            modelBuilder.Entity<Order>().ToTable("\"Orders\"");
+            modelBuilder.Entity<OrderItem>().ToTable("\"OrderItems\"");
+            modelBuilder.Entity<CartItem>().ToTable("\"CartItems\"");
+            modelBuilder.Entity<Address>().ToTable("\"Addresses\"");
+            modelBuilder.Entity<Review>().ToTable("\"Reviews\"");
+            modelBuilder.Entity<Payment>().ToTable("\"Payments\"");
+            modelBuilder.Entity<AuditLog>().ToTable("\"AuditLogs\"");
+            modelBuilder.Entity<Discount>().ToTable("\"Discounts\"");
+            modelBuilder.Entity<ProductImage>().ToTable("\"ProductImages\"");
+            modelBuilder.Entity<Brand>().ToTable("\"Brands\"");
 
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }
