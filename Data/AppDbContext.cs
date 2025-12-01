@@ -25,23 +25,34 @@ namespace OnlineStore.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-
+            // Postojeće relacije
             modelBuilder.Entity<Order>()
-        .HasMany(o => o.Items)
-        .WithOne(oi => oi.Order)
-        .HasForeignKey(oi => oi.OrderId)
-        .OnDelete(DeleteBehavior.Cascade);
+                .HasMany(o => o.Items)
+                .WithOne(oi => oi.Order)
+                .HasForeignKey(oi => oi.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<OrderItem>()
                 .HasOne(oi => oi.Product)
                 .WithMany()
                 .HasForeignKey(oi => oi.ProductId);
 
+            // Mapiranje tabela na lowercase
+            modelBuilder.Entity<User>().ToTable("users");
+            modelBuilder.Entity<Category>().ToTable("categories");
+            modelBuilder.Entity<Product>().ToTable("products");
+            modelBuilder.Entity<Order>().ToTable("orders");
+            modelBuilder.Entity<OrderItem>().ToTable("orderitems");
+            modelBuilder.Entity<CartItem>().ToTable("cartitems");
+            modelBuilder.Entity<Address>().ToTable("addresses");
+            modelBuilder.Entity<Review>().ToTable("reviews");
+            modelBuilder.Entity<Payment>().ToTable("payments");
+            modelBuilder.Entity<AuditLog>().ToTable("auditlogs");
+            modelBuilder.Entity<Discount>().ToTable("discounts");
+            modelBuilder.Entity<ProductImage>().ToTable("productimages");
+            modelBuilder.Entity<Brand>().ToTable("brands");
 
             base.OnModelCreating(modelBuilder);
-
-            // Example: composite key, relationships, constraints can be added here
         }
     }
 }
